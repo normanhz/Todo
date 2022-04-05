@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todolist;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\Session;
 
 class TodolistController extends Controller
 {
@@ -14,7 +15,7 @@ class TodolistController extends Controller
      */
     public function index()
     {
-        //
+        return view('todolist.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class TodolistController extends Controller
      */
     public function create()
     {
-        //
+        return view('todolist.form');
     }
 
     /**
