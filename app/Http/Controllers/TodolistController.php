@@ -46,7 +46,7 @@ class TodolistController extends Controller
 
         $client = Todolist::create($request->only('name', 'description'));
 
-        Session::flash('mensaje', 'Actividad creada con exito!');
+        //Session::flash('mensaje', 'Actividad creada con exito!');
         return redirect()->route('todolist.index');
     }
 
@@ -92,7 +92,7 @@ class TodolistController extends Controller
 
         $todolist->save();
 
-        Session::flash('mensaje', 'actividad actualizada con exito!');
+        // Session::flash('mensaje', 'actividad actualizada con exito!');
         return redirect()->route('todolist.index');
     }
 
@@ -105,14 +105,14 @@ class TodolistController extends Controller
     public function destroy(Todolist $todolist)
     {
         $todolist->delete();
-        Session::flash('mensaje', 'actividad eliminada con exito!');
+        // Session::flash('mensaje', 'actividad eliminada con exito!');
         return redirect()->route('todolist.index');
     }
 
     public function destroyAll()
     {
         Todolist::truncate();
-        Session::flash('mensaje', 'actividades eliminadas con exito!');
+        // Session::flash('mensaje', 'actividades eliminadas con exito!');
         return view('todolist.form');
         //return redirect()->route('todolist.index');
     }
@@ -125,7 +125,7 @@ class TodolistController extends Controller
     public function deletebyName($name)
     {
         DB::table('todolists')->where('name', $name)->delete();
-        Session::flash('mensaje', 'actividades seleccionadas eliminadas con exito!');
+        //Session::flash('mensaje', 'actividades seleccionadas eliminadas con exito!');
         return redirect()->route('todolist.index');
     }
 }

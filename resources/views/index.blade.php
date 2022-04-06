@@ -13,11 +13,11 @@
         <button type="submit" class="btn btn-danger" onclick="return confirm('Esta seguro de eliminar todas las actividades?')">Eliminar todas las actividades</button>
         </form>
 
-        @if(Session::has('mensaje'))
+        {{-- @if(Session::has('mensaje'))
         <div class="alert alert-info my-5">
             {{Session::get('mensaje')}}
         </div>
-        @endif
+        @endif --}}
 
         <table class="table">
             <thead>
