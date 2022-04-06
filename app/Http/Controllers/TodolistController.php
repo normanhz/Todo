@@ -107,4 +107,6 @@ class TodolistController extends Controller
         Session::flash('mensaje', 'actividad eliminada con exito!');
         return redirect()->route('todolist.index');
     }
+
+  
 }

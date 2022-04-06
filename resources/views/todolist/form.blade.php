@@ -1,7 +1,7 @@
 @extends('theme.base')
 
 @section('content')
-    
+<div class="container py-5 text-center">
         @if (isset($todolist))
         <h1 >Modificar actividad</h1>
         @else
@@ -43,5 +43,5 @@
 
         
     </form>
-
+</div>
 @endsection
