@@ -18,8 +18,8 @@
         @csrf
 
         <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" name="name" class="form-control" placeholder="Nombre del Cliente" value="{{old('name') ?? @$todolist->name}}">
+            <label for="name" class="form-label">Actividad</label>
+            <input type="text" name="name" class="form-control" placeholder="Nombre de la actividad" value="{{old('name') ?? @$todolist->name}}">
             @error('name')
                 <p class="form-text text-danger">{{$message}}</p>
             @enderror

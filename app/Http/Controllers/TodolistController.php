@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Todolist;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Session;
@@ -39,8 +40,8 @@ class TodolistController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:15',
-            'description' => 'required|max:50'
+            'name' => 'required|max:50',
+            'description' => 'required|max:75'
         ]);
 
         $client = Todolist::create($request->only('name', 'description'));
@@ -82,8 +83,8 @@ class TodolistController extends Controller
     public function update(Request $request, Todolist $todolist)
     {
         $request->validate([
-            'name' => 'required|max:15',
-            'description' => 'required|max:50'
+            'name' => 'required|max:50',
+            'description' => 'required|max:75'
         ]);
 
         $todolist->name = $request['name'];
@@ -108,5 +109,23 @@ class TodolistController extends Controller
         return redirect()->route('todolist.index');
     }
 
-  
+    public function destroyAll()
+    {
+        Todolist::truncate();
+        Session::flash('mensaje', 'actividades eliminadas con exito!');
+        return view('todolist.form');
+        //return redirect()->route('todolist.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deletebyName($name)
+    {
+        DB::table('todolists')->where('name', $name)->delete();
+        Session::flash('mensaje', 'actividades seleccionadas eliminadas con exito!');
+        return redirect()->route('todolist.index');
+    }
 }

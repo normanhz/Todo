@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\testController;
 use App\Http\Controllers\TodolistController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::delete('/deletebyName/{name}', [TodolistController::class, 'deletebyName']);
+
+Route::delete('/delete', [TodolistController::class, 'destroyAll']);
+
+
 Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('todolist', TodolistController::class);
-
-
+route::resource('todolist', TodolistController::class);
