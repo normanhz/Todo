@@ -15,7 +15,9 @@ class TodolistController extends Controller
      */
     public function index()
     {
-        return view('todolist.index');
+        $todo =  Todolist::paginate(5);
+        return view('index')
+            ->with('todo', $todo);
     }
 
     /**
@@ -36,7 +38,15 @@ class TodolistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:15',
+            'description' => 'required|max:50'
+        ]);
+
+        $client = Todolist::create($request->only('name', 'description'));
+
+        Session::flash('mensaje', 'Actividad creada con exito!');
+        return redirect()->route('todolist.index');
     }
 
     /**
@@ -58,7 +68,8 @@ class TodolistController extends Controller
      */
     public function edit(Todolist $todolist)
     {
-        //
+        return view('todolist.form')
+            ->with('todolist', $todolist);
     }
 
     /**
@@ -70,7 +81,18 @@ class TodolistController extends Controller
      */
     public function update(Request $request, Todolist $todolist)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:15',
+            'description' => 'required|max:50'
+        ]);
+
+        $todolist->name = $request['name'];
+        $todolist->description = $request['description'];
+
+        $todolist->save();
+
+        Session::flash('mensaje', 'actividad actualizada con exito!');
+        return redirect()->route('todolist.index');
     }
 
     /**
@@ -81,6 +103,8 @@ class TodolistController extends Controller
      */
     public function destroy(Todolist $todolist)
     {
-        //
+        $todolist->delete();
+        Session::flash('mensaje', 'actividad eliminada con exito!');
+        return redirect()->route('todolist.index');
     }
 }
