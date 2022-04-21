@@ -28,7 +28,7 @@
     
 
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label">Descripcion</label>
             <textarea name="description" cols="30" rows="4"  class="form-control">{{old('description') ?? @$todolist->description}}</textarea >
             @error('description')
                 <p class="form-text text-danger">{{$message}}</p>
