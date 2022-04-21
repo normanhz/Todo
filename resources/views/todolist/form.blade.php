@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-5 text-center">
         @if (isset($todolist))
-        <h1 >Modificar actividad</h1>
+        <h1 >Actualizar actividad</h1>
         @else
             <h1 >Crear actividad</h1>
         @endif
